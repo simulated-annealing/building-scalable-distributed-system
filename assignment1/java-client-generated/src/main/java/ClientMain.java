@@ -44,17 +44,17 @@ public class ClientMain {
         int maxLifts = 40;
         int maxDay = 1;
         String resortId = "SilverMt";
-        String address = "http://0.0.0.0:8080";
+        String address = "http://localhost:8080/bdsd_war_exploded/";
 
         ClientMain client = new ClientMain(maxThread, maxSkier, maxLifts, resortId, address);
 
         // phase 1
         Counter task1 = client.submitTasks(1, 90, 100, 5, maxThread/4);
-        while (task1.get() > maxThread/36);
+        while (task1.get() > maxThread*9/40);
 
         // phase 2
         Counter task2 = client.submitTasks(91, 360, 100, 5, maxThread);
-        while (task2.get() > maxThread/9);
+        while (task2.get() > maxThread*9/10);
 
         // phase 3
         Counter task3 = client.submitTasks(361, 420, 100, 10, maxThread);

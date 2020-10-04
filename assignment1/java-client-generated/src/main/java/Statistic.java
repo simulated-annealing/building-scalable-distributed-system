@@ -53,7 +53,7 @@ public class Statistic {
         System.out.println("number of successful requests: " + succeed);
         System.out.println("number of unsuccessful requests: " + failed);
         System.out.println("total run time: " + wallTime );
-        System.out.println("throughput: " + (succeed+failed)/wallTime);
+        System.out.println("throughput: " + succeed/wallTime);
     }
 
     public void printStats2() {
@@ -76,8 +76,8 @@ public class Statistic {
         System.out.println("client stat part 2");
         System.out.println("mean response time for POST: " + postTime/posts.size());
         System.out.println("mean response time for GET: " + getTime/gets.size());
-        System.out.println("median response time for POST: " + posts.get(posts.size()/2));
-        System.out.println("median response time for GET: " + gets.get(gets.size()/2));
+        System.out.println("median response time for POST: " + (posts.get(posts.size()/2).getEnd()-posts.get(posts.size()/2).getBegin()));
+        System.out.println("median response time for GET: " + (gets.get(gets.size()/2).getEnd()-gets.get(gets.size()/2).getBegin()));
         System.out.println("total wall time: " + (postTime + getTime));
         System.out.println("throughput: " + (posts.size()+gets.size())/(postTime+getTime));
         System.out.println("p99 response time for POST: ");
