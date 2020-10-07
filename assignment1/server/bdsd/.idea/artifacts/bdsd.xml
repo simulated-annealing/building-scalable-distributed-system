@@ -6,8 +6,13 @@
         <element id="directory" name="classes">
           <element id="module-output" name="bdsd" />
         </element>
+        <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/web.xml" />
       </element>
       <element id="javaee-facet-resources" facet="bdsd/web/Web" />
+      <element id="file-copy" path="$PROJECT_DIR$/web/index.jsp" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/web/META-INF/MANIFEST.MF" />
+      </element>
     </root>
   </artifact>
 </component>
