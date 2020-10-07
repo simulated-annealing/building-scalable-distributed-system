@@ -5,11 +5,35 @@ public class Statistic {
     Queue<RestfulCall> callQ;
     List<RestfulCall> gets;
     List<RestfulCall> posts;
+    boolean includePart2;
+    long wallTime;
+    long succeed;
+    long failed;
 
-    public Statistic() {
-        callQ = new LinkedBlockingQueue<>();
-        gets = new ArrayList<>();
-        posts = new ArrayList<>();
+    public Statistic(boolean includePart2) {
+        this.callQ = new LinkedBlockingQueue<>();
+        this.gets = new ArrayList<>();
+        this.posts = new ArrayList<>();
+        this.includePart2 = includePart2;
+        this.wallTime = 0;
+        this.succeed = 0;
+        this.failed = 0;
+    }
+
+    public boolean isIncludePart2() {
+        return includePart2;
+    }
+
+    public void setWallTime(long wallTime) {
+        this.wallTime = wallTime;
+    }
+
+    public synchronized void incSucceed() {
+        succeed++;
+    }
+
+    public synchronized void incFailed() {
+        failed++;
     }
 
     public boolean offer(RestfulCall call) {
@@ -30,33 +54,15 @@ public class Statistic {
     }
 
     public void printStats1() {
-        int succeed = 0;
-        int failed = 0;
-        long start = Long.MAX_VALUE;
-        long end = 0;
-
-        for (RestfulCall call: posts) {
-            if (call.isSuccess()) succeed++;
-            else failed++;
-            start = Math.min(start, call.getBegin());
-            end = Math.max(end, call.getEnd());
-        }
-        for (RestfulCall call: gets) {
-            if (call.isSuccess()) succeed++;
-            else failed++;
-            start = Math.min(start, call.getBegin());
-            end = Math.max(end, call.getEnd());
-        }
-        long wallTime = end-start;
-
         System.out.println("client stat part 1");
         System.out.println("number of successful requests: " + succeed);
         System.out.println("number of unsuccessful requests: " + failed);
-        System.out.println("total run time: " + wallTime );
-        System.out.println("throughput: " + succeed/wallTime);
+        System.out.println("total run time: " + wallTime + " ms");
+        System.out.println("throughput: " + succeed*1000/wallTime + " req/sec");
     }
 
     public void printStats2() {
+        if (!includePart2) return;
         long getTime = 0;
         long postTime = 0;
         long mxReqTime = 0;
@@ -73,16 +79,22 @@ public class Statistic {
             getTime += dur;
         }
 
+        RestfulCall p = null;
+
         System.out.println("client stat part 2");
-        System.out.println("mean response time for POST: " + postTime/posts.size());
-        System.out.println("mean response time for GET: " + getTime/gets.size());
-        System.out.println("median response time for POST: " + (posts.get(posts.size()/2).getEnd()-posts.get(posts.size()/2).getBegin()));
-        System.out.println("median response time for GET: " + (gets.get(gets.size()/2).getEnd()-gets.get(gets.size()/2).getBegin()));
-        System.out.println("total wall time: " + (postTime + getTime));
-        System.out.println("throughput: " + (posts.size()+gets.size())/(postTime+getTime));
-        System.out.println("p99 response time for POST: ");
-        System.out.println("p99 response time for GET: ");
-        System.out.println("max response time for POST: " + mxReqTime);
-        System.out.println("max response time for GET: " + mxGetTime);
+        System.out.println("mean response time for POST: " + postTime/posts.size() + " ms");
+        System.out.println("mean response time for GET: " + getTime/gets.size() + " ms");
+        p = posts.get(posts.size()/2);
+        System.out.println("median response time for POST: " + (p.getEnd()-p.getBegin()) + " ms");
+        p = gets.get(gets.size()/2);
+        System.out.println("median response time for GET: " + (p.getEnd()-p.getBegin()) + " ms");
+        System.out.println("total wall time: " + wallTime + " ms");
+        System.out.println("throughput: " + 1000*succeed/wallTime + " req/sec");
+        p = posts.get(Math.min(posts.size() - 1, posts.size()*99/100));
+        System.out.println("p99 response time for POST: " + (p.getEnd()-p.getBegin()) + " ms");
+        p = gets.get(Math.min(gets.size() - 1, gets.size()*99/100));
+        System.out.println("p99 response time for GET: " + (p.getEnd()-p.getBegin()) + " ms");
+        System.out.println("max response time for POST: " + mxReqTime + " ms");
+        System.out.println("max response time for GET: " + mxGetTime + " ms");
     }
 }

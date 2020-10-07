@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="bdsd">
+    <output-path>$PROJECT_DIR$/out/artifacts/bdsd</output-path>
+    <root id="archive" name="bdsd.war">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="bdsd" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="bdsd/web/Web" />
+    </root>
+  </artifact>
+</component>

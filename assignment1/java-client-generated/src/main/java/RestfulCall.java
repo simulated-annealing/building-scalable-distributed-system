@@ -1,22 +1,18 @@
 public class RestfulCall implements Comparable<RestfulCall> {
     String command;
-    boolean success;
+    int code; // response code
     long begin;
     long end;
 
-    public RestfulCall(String command, boolean success, long begin, long end) {
+    public RestfulCall(String command, int code, long begin, long end) {
         this.command = command;
-        this.success = success;
+        this.code = code;
         this.begin = begin;
         this.end = end;
     }
 
     public String getCommand() {
         return command;
-    }
-
-    public boolean isSuccess() {
-        return success;
     }
 
     public long getBegin() {

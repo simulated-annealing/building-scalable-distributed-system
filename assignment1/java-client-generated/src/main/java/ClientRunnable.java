@@ -4,7 +4,6 @@ import io.swagger.client.ApiResponse;
 import io.swagger.client.api.ResortsApi;
 import io.swagger.client.api.SkiersApi;
 import io.swagger.client.model.LiftRide;
-import io.swagger.client.model.SkierVertical;
 
 public class ClientRunnable implements Runnable{
     ThreadData data;
@@ -12,6 +11,8 @@ public class ClientRunnable implements Runnable{
     SkiersApi skiersApi;
     ResortsApi resortsApi;
     Statistic stat;
+
+    long timeStamp;
 
     public ClientRunnable(ThreadData data, Counter task, Statistic stat) {
         super();
@@ -27,44 +28,62 @@ public class ClientRunnable implements Runnable{
     @Override
     public void run() {
         for (int i = 0; i < data.getNumPost(); i++) {
-            doPost();
+            beginStat();
+            int respCode = doPost();
+            endStat("POST", respCode);
         }
 
         for (int i = 0; i < data.getNumGet(); i++) {
-            doGet();
+            beginStat();
+            int respCode = doGet();
+            endStat("GET", respCode);
         }
         task.dec();
     }
 
-    void doPost() {
+    int doPost() {
+        int code = -1;
         LiftRide ride = new LiftRide();
         ride.setDayID(data.genDay());
         ride.setSkierID(data.genSkiId());
         ride.setLiftID(data.genLiftId());
-        long begin = System.currentTimeMillis();
-        ApiResponse response = null;
         try {
-            response = skiersApi.writeNewLiftRideWithHttpInfo(ride);
+            ApiResponse response = skiersApi.writeNewLiftRideWithHttpInfo(ride);
+            code = response.getStatusCode();
         } catch (ApiException e) {
             e.printStackTrace();
-        } finally {
-            long end = System.currentTimeMillis();
-            RestfulCall call = new RestfulCall("POST", response != null && response.getStatusCode() == 201, begin, end);
-            stat.offer(call);
+            return code;
+        }
+        return code;
+    }
+
+    int doGet() {
+        int code = -1;
+        try {
+            ApiResponse response = skiersApi.getSkierDayVerticalWithHttpInfo(data.getResortId(), data.genDay(), data.genSkiId());
+            code = response.getStatusCode();
+        } catch (ApiException e) {
+            e.printStackTrace();
+            return code;
+        }
+        return code;
+    }
+
+    void beginStat() {
+        if (stat.isIncludePart2()) {
+            timeStamp = System.currentTimeMillis();
         }
     }
 
-    void doGet() {
-        long begin = System.currentTimeMillis();
-        ApiResponse<SkierVertical> response = null;
-        try {
-            response = skiersApi.getSkierDayVerticalWithHttpInfo(data.getResortId(), data.genDay(), data.genSkiId());
-        } catch (ApiException e) {
-            e.printStackTrace();
-        } finally {
+    void endStat(String cmd, int responseCode) {
+        if (stat.isIncludePart2()) {
             long end = System.currentTimeMillis();
-            RestfulCall call = new RestfulCall("GET", response != null && response.getStatusCode() == 200, begin, end);
+            RestfulCall call = new RestfulCall(cmd, responseCode, timeStamp, end);
             stat.offer(call);
         }
+        if (responseCode == 200 || responseCode == 201)
+            stat.incSucceed();
+        else
+            stat.incFailed();
     }
 }
