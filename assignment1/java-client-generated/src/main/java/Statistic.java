@@ -1,3 +1,8 @@
+import com.opencsv.CSVWriter;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -96,5 +101,27 @@ public class Statistic {
         System.out.println("p99 response time for GET: " + (p.getEnd()-p.getBegin()) + " ms");
         System.out.println("max response time for POST: " + mxReqTime + " ms");
         System.out.println("max response time for GET: " + mxGetTime + " ms");
+    }
+
+
+    void writeToCSV() {
+        File file = new File("Requests.csv");
+
+        try {
+            FileWriter fw = new FileWriter(file);
+            CSVWriter csvw = new CSVWriter(fw);
+            csvw.writeNext(new String[] {"StartTime", "RequestType", "Latency", "ResponseCode"});
+
+            for(RestfulCall call : gets) {
+                csvw.writeNext(new String[] {String.valueOf(call.getBegin()), "GET", String.valueOf(call.getEnd()-call.getBegin()), String.valueOf(call.getCode())});
+            }
+            for(RestfulCall call : posts) {
+                csvw.writeNext(new String[] {String.valueOf(call.getBegin()), "POST", String.valueOf(call.getEnd()-call.getBegin()), String.valueOf(call.getCode())});
+            }
+
+            csvw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

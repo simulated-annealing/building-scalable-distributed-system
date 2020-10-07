@@ -23,6 +23,10 @@ public class RestfulCall implements Comparable<RestfulCall> {
         return end;
     }
 
+    public int getCode() {
+        return code;
+    }
+
     @Override
     public int compareTo(RestfulCall call) {
         long dur0 = end - begin;

@@ -47,6 +47,7 @@ public class ClientPart2 {
         long end = System.currentTimeMillis();
         client.getStat().setWallTime(end-begin);
         client.getStat().dump();
+        client.getStat().writeToCSV();
         client.getStat().printStats1();
         client.getStat().printStats2();
 
