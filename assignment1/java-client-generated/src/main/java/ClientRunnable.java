@@ -5,6 +5,9 @@ import io.swagger.client.api.ResortsApi;
 import io.swagger.client.api.SkiersApi;
 import io.swagger.client.model.LiftRide;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class ClientRunnable implements Runnable{
     ThreadData data;
     Counter task;
@@ -81,9 +84,12 @@ public class ClientRunnable implements Runnable{
             RestfulCall call = new RestfulCall(cmd, responseCode, timeStamp, end);
             stat.offer(call);
         }
-        if (responseCode == 200 || responseCode == 201)
+        if (responseCode == 200 || responseCode == 201) {
             stat.incSucceed();
-        else
+        }
+        else {
             stat.incFailed();
+            Logger.getGlobal().log(Level.WARNING, "Failed Request, response code " + responseCode);
+        }
     }
 }

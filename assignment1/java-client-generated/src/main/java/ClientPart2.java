@@ -15,7 +15,12 @@ public class ClientPart2 {
     }
 
     public static void main(String[] args) {
-        String configPath = "/Users/jihongliu/IdeaProjects/building-scalable-distributed-system/assignment1/java-client-generated/src/main/resources/config.properties";
+        if (args.length == 0) {
+            System.out.println("Error, pass the config file path as the first parameter.");
+            return;
+        }
+        //String configPath = "/Users/jihongliu/IdeaProjects/building-scalable-distributed-system/assignment1/java-client-generated/src/main/resources/config.properties";
+        String configPath = args[0];
         Properties config = readConfigFile(configPath);
 
         int maxThread = Integer.parseInt(config.getProperty("maxThread"));
