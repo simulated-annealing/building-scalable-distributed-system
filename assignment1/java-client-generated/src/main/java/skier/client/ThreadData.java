@@ -1,3 +1,4 @@
+package skier.client;
 import java.util.Random;
 
 public class ThreadData {

@@ -1,3 +1,5 @@
+package skier.client;
+
 import java.util.concurrent.*;
 
 
@@ -9,7 +11,7 @@ public class Client {
     String address;
     Statistic stat;
 
-    Client(int maxThread, int maxSkier, int maxLifts, String resortId, String address, boolean includePart2) {
+    public Client(int maxThread, int maxSkier, int maxLifts, String resortId, String address, boolean includePart2) {
         this.pool = Executors.newFixedThreadPool(maxThread);
         this.maxSkier = maxSkier;
         this.maxLifts = maxLifts;
@@ -22,7 +24,7 @@ public class Client {
         return stat;
     }
 
-    Counter submitTasks(int minDay, int maxDay, int numPost, int numGet, int numThread) {
+    public Counter submitTasks(int minDay, int maxDay, int numPost, int numGet, int numThread) {
         int chunk = maxSkier/numThread;
         Counter task = new Counter(numThread);
         for (int i = 0; i < numThread; i++) {
@@ -32,7 +34,7 @@ public class Client {
         return task;
     }
 
-    void shutDown() {
+    public void shutDown() {
         pool.shutdown();
     }
 

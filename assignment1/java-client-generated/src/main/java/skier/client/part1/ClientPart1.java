@@ -1,3 +1,8 @@
+package skier.client.part1;
+
+import skier.client.Client;
+import skier.client.Counter;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;

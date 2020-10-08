@@ -23,23 +23,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03a5e35f-9c58-4a32-85f0-7bcfc21610ad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_opencsv_opencsv_4_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_beanutils_commons_beanutils_1_9_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_collections_commons_collections_3_2_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_collections4_4_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_8_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_text_1_3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ClientPart1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ClientPart1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ClientPart2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ClientPart2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/RestfulCall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RestfulCall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Statistic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Statistic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/swagger-java-client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/swagger-java-client.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/skier/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ClientPart1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/skier/client/part1/ClientPart1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ClientPart2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/skier/client/part2/ClientPart2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ClientRunnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/skier/client/ClientRunnable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Counter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/skier/client/Counter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/RestfulCall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/skier/client/RestfulCall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Statistic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/skier/client/Statistic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ThreadData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/skier/client/ThreadData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/bdsd/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../server/bdsd/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,6 +73,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/skier/client" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -88,7 +81,7 @@
     <property name="settings.editor.selected.configurable" value="preferences.externalDependencies" />
     <property name="show.unlinked.gradle.project.popup" value="false" />
   </component>
-  <component name="RunManager" selected="Application.ClientPart2">
+  <component name="RunManager" selected="Application.ClientPart2 (1)">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Client" />
       <module name="swagger-java-client" />
@@ -96,9 +89,35 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ClientPart1 (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="skier.client.part1.ClientPart1" />
+      <module name="swagger-java-client" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="skier.client.part1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ClientPart1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ClientPart1" />
       <module name="swagger-java-client" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ClientPart2 (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="skier.client.part2.ClientPart2" />
+      <module name="swagger-java-client" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="skier.client.part2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -123,27 +142,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SkiersApiTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="swagger-java-client" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="io.swagger.client.api.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="io.swagger.client.api" />
-      <option name="MAIN_CLASS_NAME" value="io.swagger.client.api.SkiersApiTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ClientPart2 (1)" />
+        <item itemvalue="Application.ClientPart1 (1)" />
         <item itemvalue="Application.ClientPart2" />
         <item itemvalue="Application.ClientPart1" />
         <item itemvalue="Application.ClientMain" />
-        <item itemvalue="JUnit.SkiersApiTest" />
       </list>
     </recent_temporary>
   </component>
@@ -160,7 +165,7 @@
       <workItem from="1601803445182" duration="3381000" />
       <workItem from="1601844453286" duration="504000" />
       <workItem from="1602053834373" duration="185000" />
-      <workItem from="1602055776682" duration="22255000" />
+      <workItem from="1602055776682" duration="23837000" />
     </task>
     <servers />
   </component>
@@ -211,10 +216,10 @@
     </state>
     <state width="510" height="466" key="DebuggerActiveHint/1344.0.1920.1080/0.0.1344.840@1344.0.1920.1080" timestamp="1601702462286" />
     <state width="510" height="457" key="DebuggerActiveHint/1344.23.1920.1057/0.23.1344.752@1344.23.1920.1057" timestamp="1601806419859" />
-    <state width="1113" height="372" key="GridCell.Tab.0.bottom" timestamp="1602113436734">
+    <state width="1041" height="372" key="GridCell.Tab.0.bottom" timestamp="1602116301338">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
-    <state width="1113" height="372" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1602113436734" />
+    <state width="1041" height="372" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1602116301338" />
     <state width="1358" height="243" key="GridCell.Tab.0.bottom/0.23.1440.801/1440.23.1920.1057@1440.23.1920.1057" timestamp="1602107587662" />
     <state width="1878" height="376" key="GridCell.Tab.0.bottom/1344.0.1920.1080/0.0.1344.840@1344.0.1920.1080" timestamp="1601759155914" />
     <state width="1878" height="376" key="GridCell.Tab.0.bottom/1344.0.1920.1080/0.23.1344.817@1344.0.1920.1080" timestamp="1601759046256" />
@@ -222,10 +227,10 @@
     <state width="1878" height="230" key="GridCell.Tab.0.bottom/1344.23.1920.1057/0.23.1344.756@1344.23.1920.1057" timestamp="1601797764398" />
     <state width="1878" height="358" key="GridCell.Tab.0.bottom/1344.23.1920.1057/0.23.1344.761@1344.23.1920.1057" timestamp="1601760449682" />
     <state width="1878" height="194" key="GridCell.Tab.0.bottom/1344.23.1920.984/0.23.1344.817@1344.23.1920.984" timestamp="1601787725737" />
-    <state width="1113" height="372" key="GridCell.Tab.0.center" timestamp="1602113436731">
+    <state width="1041" height="372" key="GridCell.Tab.0.center" timestamp="1602116301337">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
-    <state width="1113" height="372" key="GridCell.Tab.0.center/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1602113436731" />
+    <state width="1041" height="372" key="GridCell.Tab.0.center/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1602116301337" />
     <state width="1358" height="243" key="GridCell.Tab.0.center/0.23.1440.801/1440.23.1920.1057@1440.23.1920.1057" timestamp="1602107587661" />
     <state width="1878" height="376" key="GridCell.Tab.0.center/1344.0.1920.1080/0.0.1344.840@1344.0.1920.1080" timestamp="1601759155913" />
     <state width="1878" height="376" key="GridCell.Tab.0.center/1344.0.1920.1080/0.23.1344.817@1344.0.1920.1080" timestamp="1601759046254" />
@@ -233,10 +238,10 @@
     <state width="1878" height="230" key="GridCell.Tab.0.center/1344.23.1920.1057/0.23.1344.756@1344.23.1920.1057" timestamp="1601797764397" />
     <state width="1878" height="358" key="GridCell.Tab.0.center/1344.23.1920.1057/0.23.1344.761@1344.23.1920.1057" timestamp="1601760449681" />
     <state width="1878" height="194" key="GridCell.Tab.0.center/1344.23.1920.984/0.23.1344.817@1344.23.1920.984" timestamp="1601787725736" />
-    <state width="1113" height="372" key="GridCell.Tab.0.left" timestamp="1602113436729">
+    <state width="1041" height="372" key="GridCell.Tab.0.left" timestamp="1602116301335">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
-    <state width="1113" height="372" key="GridCell.Tab.0.left/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1602113436729" />
+    <state width="1041" height="372" key="GridCell.Tab.0.left/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1602116301335" />
     <state width="1358" height="243" key="GridCell.Tab.0.left/0.23.1440.801/1440.23.1920.1057@1440.23.1920.1057" timestamp="1602107587661" />
     <state width="1878" height="376" key="GridCell.Tab.0.left/1344.0.1920.1080/0.0.1344.840@1344.0.1920.1080" timestamp="1601759155913" />
     <state width="1878" height="376" key="GridCell.Tab.0.left/1344.0.1920.1080/0.23.1344.817@1344.0.1920.1080" timestamp="1601759046253" />
@@ -244,10 +249,10 @@
     <state width="1878" height="230" key="GridCell.Tab.0.left/1344.23.1920.1057/0.23.1344.756@1344.23.1920.1057" timestamp="1601797764397" />
     <state width="1878" height="358" key="GridCell.Tab.0.left/1344.23.1920.1057/0.23.1344.761@1344.23.1920.1057" timestamp="1601760449681" />
     <state width="1878" height="194" key="GridCell.Tab.0.left/1344.23.1920.984/0.23.1344.817@1344.23.1920.984" timestamp="1601787725734" />
-    <state width="1113" height="372" key="GridCell.Tab.0.right" timestamp="1602113436733">
+    <state width="1041" height="372" key="GridCell.Tab.0.right" timestamp="1602116301337">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
-    <state width="1113" height="372" key="GridCell.Tab.0.right/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1602113436733" />
+    <state width="1041" height="372" key="GridCell.Tab.0.right/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1602116301337" />
     <state width="1358" height="243" key="GridCell.Tab.0.right/0.23.1440.801/1440.23.1920.1057@1440.23.1920.1057" timestamp="1602107587662" />
     <state width="1878" height="376" key="GridCell.Tab.0.right/1344.0.1920.1080/0.0.1344.840@1344.0.1920.1080" timestamp="1601759155914" />
     <state width="1878" height="376" key="GridCell.Tab.0.right/1344.0.1920.1080/0.23.1344.817@1344.0.1920.1080" timestamp="1601759046255" />
@@ -314,6 +319,10 @@
       <screen x="1440" y="23" width="1920" height="1057" />
     </state>
     <state width="700" height="380" key="XDebugger.FullValuePopup/0.23.1440.801/1440.23.1920.1057@1440.23.1920.1057" timestamp="1602100815740" />
+    <state x="2605" y="325" key="chooseDestDirectoryDialog" timestamp="1602116377968">
+      <screen x="1440" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2605" y="325" key="chooseDestDirectoryDialog/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1602116377968" />
     <state x="1973" y="275" width="926" height="617" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1601806848792">
       <screen x="1344" y="23" width="1920" height="1057" />
     </state>

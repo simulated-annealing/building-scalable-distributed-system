@@ -1,3 +1,5 @@
+package skier.client;
+
 public class RestfulCall implements Comparable<RestfulCall> {
     String command;
     int code; // response code

@@ -1,3 +1,5 @@
+package skier.client;
+
 public class Counter {
     volatile int count = 0;
 

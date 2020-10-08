@@ -1,5 +1,6 @@
-import com.opencsv.CSVWriter;
+package skier.client;
 
+import com.opencsv.CSVWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -104,7 +105,7 @@ public class Statistic {
     }
 
 
-    void writeToCSV() {
+    public void writeToCSV() {
         File file = new File("Requests.csv");
 
         try {
