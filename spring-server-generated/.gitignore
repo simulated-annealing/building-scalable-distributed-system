@@ -1,0 +1,7 @@
+target/
+.idea/
+
+.swagger-codegen
+.swagger-codegen-ignore
+.DS_Store
+
