@@ -7,10 +7,12 @@ import io.swagger.client.api.ResortsApi;
 import io.swagger.client.api.SkiersApi;
 import io.swagger.client.model.LiftRide;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ClientRunnable implements Runnable{
+public class ClientRunnable implements Runnable {
     ThreadData data;
     Counter task;
     SkiersApi skiersApi;
@@ -40,18 +42,29 @@ public class ClientRunnable implements Runnable{
 
         for (int i = 0; i < data.getNumGet(); i++) {
             beginStat();
-            int respCode = doGet();
-            endStat("GET", respCode);
+            int respCode = skierDayVert();
+            endStat("GET skierDayVert", respCode);
         }
+
+        if (data.getNumGet() == 10) { // if phase 3
+            for (int i = 0; i < data.getNumGet(); i++) {
+                beginStat();
+                int respCode = skierResortTotal();
+                endStat("GET skierResortTotal", respCode);
+            }
+        }
+
         task.dec();
     }
 
     int doPost() {
         int code = -1;
         LiftRide ride = new LiftRide();
-        ride.setDayID(data.genDay());
+        ride.setDayID("1");
+        ride.setTime(data.genTime());
         ride.setSkierID(data.genSkiId());
         ride.setLiftID(data.genLiftId());
+        ride.setResortID("Hyatt");
         try {
             ApiResponse response = skiersApi.writeNewLiftRideWithHttpInfo(ride);
             code = response.getStatusCode();
@@ -62,10 +75,24 @@ public class ClientRunnable implements Runnable{
         return code;
     }
 
-    int doGet() {
+    int skierDayVert() {
         int code = -1;
         try {
-            ApiResponse response = skiersApi.getSkierDayVerticalWithHttpInfo(data.getResortId(), data.genDay(), data.genSkiId());
+            ApiResponse response = skiersApi.getSkierDayVerticalWithHttpInfo(data.getResortId(), "1", data.genSkiId());
+            code = response.getStatusCode();
+        } catch (ApiException e) {
+            e.printStackTrace();
+            return code;
+        }
+        return code;
+    }
+
+    int skierResortTotal() {
+        int code = -1;
+        try {
+            List<String> resorts = new ArrayList<>();
+            resorts.add(data.getResortId());
+            ApiResponse response = skiersApi.getSkierResortTotalsWithHttpInfo(data.genSkiId(), resorts);
             code = response.getStatusCode();
         } catch (ApiException e) {
             e.printStackTrace();
@@ -88,8 +115,7 @@ public class ClientRunnable implements Runnable{
         }
         if (responseCode == 200 || responseCode == 201) {
             stat.incSucceed();
-        }
-        else {
+        } else {
             stat.incFailed();
             Logger.getGlobal().log(Level.WARNING, "Failed Request, response code " + responseCode);
         }

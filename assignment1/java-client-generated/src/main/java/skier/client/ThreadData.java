@@ -1,4 +1,5 @@
 package skier.client;
+
 import java.util.Random;
 
 public class ThreadData {
@@ -9,21 +10,21 @@ public class ThreadData {
     int maxSkierId;
     int minLiftId;
     int maxLiftId;
-    int minDay;
-    int maxDay;
+    int minTime;
+    int maxTime;
 
     int numPost;
     int numGet;
 
     Random rand;
 
-    public ThreadData(int minSkierId, int maxSkierId, int minLiftId, int maxLiftId, int minDay, int maxDay, int numPost, int numGet, String resortId, String address) {
+    public ThreadData(int minSkierId, int maxSkierId, int minLiftId, int maxLiftId, int minTime, int maxTime, int numPost, int numGet, String resortId, String address) {
         this.minSkierId = minSkierId;
         this.maxSkierId = maxSkierId;
         this.minLiftId = minLiftId;
         this.maxLiftId = maxLiftId;
-        this.minDay = minDay;
-        this.maxDay = maxDay;
+        this.minTime = minTime;
+        this.maxTime = maxTime;
         this.numPost = numPost;
         this.numGet = numGet;
         this.resortId = resortId;
@@ -39,8 +40,8 @@ public class ThreadData {
         return String.valueOf(range(minLiftId, maxLiftId));
     }
 
-    public String genDay() {
-        return String.valueOf(range(minDay, maxDay));
+    public String genTime() {
+        return String.valueOf(range(minTime, maxTime));
     }
 
     public int getNumPost() {
@@ -60,6 +61,6 @@ public class ThreadData {
     }
 
     int range(int lower, int upper) {
-        return lower + rand.nextInt(upper-lower+1);
+        return lower + rand.nextInt(upper - lower + 1);
     }
 }

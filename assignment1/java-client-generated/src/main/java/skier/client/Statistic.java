@@ -1,6 +1,7 @@
 package skier.client;
 
 import com.opencsv.CSVWriter;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -62,9 +63,9 @@ public class Statistic {
     public void printStats1() {
         System.out.println("client stat part 1");
         System.out.println("number of successful requests: " + succeed);
-        System.out.println("number of unsuccessful requests: " + failed);
+        System.out.println("number of unsuccessful requests: 0" + failed);
         System.out.println("total run time: " + wallTime + " ms");
-        System.out.println("throughput: " + succeed*1000/wallTime + " req/sec");
+        System.out.println("throughput: " + succeed * 1000 / wallTime + " req/sec");
     }
 
     public void printStats2() {
@@ -74,36 +75,58 @@ public class Statistic {
         long mxReqTime = 0;
         long mxGetTime = 0;
 
-        for (RestfulCall call: posts) {
-            long dur = call.getEnd()-call.getBegin();
+        long skierDayVertTime = 0;
+        long skierResortTotalTime = 0;
+        List<Long> skierDayVert = new ArrayList<>();
+        List<Long> skierResortTotal = new ArrayList<>();
+
+        for (RestfulCall call : posts) {
+            long dur = call.getEnd() - call.getBegin();
             mxReqTime = Math.max(mxReqTime, dur);
             postTime += dur;
         }
-        for (RestfulCall call: gets) {
-            long dur = call.getEnd()-call.getBegin();
+        for (RestfulCall call : gets) {
+            long dur = call.getEnd() - call.getBegin();
             mxGetTime = Math.max(mxGetTime, dur);
             getTime += dur;
+
+            if (call.getCommand().contains("skierDayVert")) {
+                skierDayVertTime += dur;
+                skierDayVert.add(dur);
+            } else {
+                skierResortTotalTime += dur;
+                skierResortTotal.add(dur);
+            }
         }
+        Collections.sort(skierDayVert);
+        Collections.sort(skierResortTotal);
 
         RestfulCall p = null;
 
         System.out.println("client stat part 2");
-        System.out.println("mean response time for POST: " + postTime/posts.size() + " ms");
-        System.out.println("mean response time for GET: " + getTime/gets.size() + " ms");
-        p = posts.get(posts.size()/2);
-        System.out.println("median response time for POST: " + (p.getEnd()-p.getBegin()) + " ms");
-        p = gets.get(gets.size()/2);
-        System.out.println("median response time for GET: " + (p.getEnd()-p.getBegin()) + " ms");
+        System.out.println("mean response time for POST: " + postTime / posts.size() + " ms");
+        System.out.println("mean response time for GET: " + getTime / gets.size() + " ms");
+        p = posts.get(posts.size() / 2);
+        System.out.println("median response time for POST: " + (p.getEnd() - p.getBegin()) + " ms");
+        p = gets.get(gets.size() / 2);
+        System.out.println("median response time for GET: " + (p.getEnd() - p.getBegin()) + " ms");
         System.out.println("total wall time: " + wallTime + " ms");
-        System.out.println("throughput: " + 1000*succeed/wallTime + " req/sec");
-        p = posts.get(Math.min(posts.size() - 1, posts.size()*99/100));
-        System.out.println("p99 response time for POST: " + (p.getEnd()-p.getBegin()) + " ms");
-        p = gets.get(Math.min(gets.size() - 1, gets.size()*99/100));
-        System.out.println("p99 response time for GET: " + (p.getEnd()-p.getBegin()) + " ms");
+        System.out.println("throughput: " + 1000 * succeed / wallTime + " req/sec");
+        p = posts.get(Math.min(posts.size() - 1, posts.size() * 99 / 100));
+        System.out.println("p99 response time for POST: " + (p.getEnd() - p.getBegin()) + " ms");
+        p = gets.get(Math.min(gets.size() - 1, gets.size() * 99 / 100));
+        System.out.println("p99 response time for GET: " + (p.getEnd() - p.getBegin()) + " ms");
         System.out.println("max response time for POST: " + mxReqTime + " ms");
         System.out.println("max response time for GET: " + mxGetTime + " ms");
-    }
 
+        System.out.println("------------------ assignment 2 updated ----------------------");
+        System.out.println("mean response time for SkierDayVertical Api: " + skierDayVertTime / skierDayVert.size() + " ms");
+        System.out.println("median response time for SkierDayVertical Api : " + skierDayVert.get(skierDayVert.size()/2) + " ms");
+        System.out.println("p99 response time for SkierDayVertical Api: " + skierDayVert.get((skierDayVert.size()-1)*99/100)+ " ms");
+        System.out.println("\nmean response time for SkierResortTotal Api: " + skierResortTotalTime / skierResortTotal.size() + " ms");
+        System.out.println("median response time for SkierResortTotal Api : " + skierResortTotal.get(skierResortTotal.size()/2) + " ms");
+        System.out.println("p99 response time for SkierResortTotal Api: " + skierResortTotal.get((skierResortTotal.size()-1)*99/100)+ " ms");
+    }
 
     public void writeToCSV() {
         File file = new File("Requests.csv");
@@ -111,13 +134,13 @@ public class Statistic {
         try {
             FileWriter fw = new FileWriter(file);
             CSVWriter csvw = new CSVWriter(fw);
-            csvw.writeNext(new String[] {"StartTime", "RequestType", "Latency", "ResponseCode"});
+            csvw.writeNext(new String[]{"StartTime", "RequestType", "Latency", "ResponseCode"});
 
-            for(RestfulCall call : gets) {
-                csvw.writeNext(new String[] {String.valueOf(call.getBegin()), "GET", String.valueOf(call.getEnd()-call.getBegin()), String.valueOf(call.getCode())});
+            for (RestfulCall call : gets) {
+                csvw.writeNext(new String[]{String.valueOf(call.getBegin()), "GET", String.valueOf(call.getEnd() - call.getBegin()), String.valueOf(call.getCode())});
             }
-            for(RestfulCall call : posts) {
-                csvw.writeNext(new String[] {String.valueOf(call.getBegin()), "POST", String.valueOf(call.getEnd()-call.getBegin()), String.valueOf(call.getCode())});
+            for (RestfulCall call : posts) {
+                csvw.writeNext(new String[]{String.valueOf(call.getBegin()), "POST", String.valueOf(call.getEnd() - call.getBegin()), String.valueOf(call.getCode())});
             }
 
             csvw.close();

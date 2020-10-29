@@ -24,11 +24,11 @@ public class Client {
         return stat;
     }
 
-    public Counter submitTasks(int minDay, int maxDay, int numPost, int numGet, int numThread) {
-        int chunk = maxSkier/numThread;
+    public Counter submitTasks(int minTime, int maxTime, int numPost, int numGet, int numThread) {
+        int chunk = maxSkier / numThread;
         Counter task = new Counter(numThread);
         for (int i = 0; i < numThread; i++) {
-            ThreadData data = new ThreadData(i*chunk+1, (i+1)*chunk, 1, maxLifts, minDay, maxDay, numPost, numGet, resortId, address);
+            ThreadData data = new ThreadData(i * chunk + 1, (i + 1) * chunk, 1, maxLifts, minTime, maxTime, numPost, numGet, resortId, address);
             pool.submit(new ClientRunnable(data, task, stat));
         }
         return task;
