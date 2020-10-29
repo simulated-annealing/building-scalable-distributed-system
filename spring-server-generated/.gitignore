@@ -4,4 +4,5 @@ target/
 .swagger-codegen
 .swagger-codegen-ignore
 .DS_Store
+*.iml
 
