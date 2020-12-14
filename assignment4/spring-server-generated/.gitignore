@@ -1,0 +1,6 @@
+target/
+*.iml
+.idea/
+.swagger-codegen/
+.swagger-codegen-ignore
+.DS_Store

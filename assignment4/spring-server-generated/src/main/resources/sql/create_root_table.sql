@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS RootTable (
+  ResortId VARCHAR(255) NOT NULL,
+  DayId INTEGER NOT NULL,
+  SkierTable VARCHAR(255) NOT NULL,
+  CONSTRAINT pk_RootTable_ResortId_DayId PRIMARY KEY (ResortId, DayId)
+);
